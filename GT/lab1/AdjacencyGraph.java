@@ -8,14 +8,15 @@ public class AdjacencyGraph {
 
     public static void main(String[] args) {
         int[][] arr1 = {{0, 1}, {1, 2}, {2, 0}};
-        int[][] arr2 = {{0, 1}, {1, 2}, {1, 3}, {2, 3}, {3, 0}};
+        int[][] arr2 = {{0, 1}, {1, 2}, {1, 3}, {2, 3}, {3, 0} ,{4,5} , {5,4} ,{6,7},{7,6}};
         Graph g = new Graph();
 
         Map<Integer, ArrayList<Integer>> graph2 = g.getAdjacencyListInMap(arr2);
         System.out.println(graph2);
         // g.bfs(graph2);
         // g.dfs(graph2);
-        g.countInOutDegree(graph2);
+        // g.countInOutDegree(graph2);
+        System.out.println(g.numberOfComponents(graph2));
     }
 }
 
@@ -67,6 +68,19 @@ class Graph {
 
     }
 
+    int numberOfComponents(Map<Integer, ArrayList<Integer>> graph){
+        boolean[] visited = new boolean[graph.size()];
+        int count = 0;
+        for (int key : graph.keySet()) {
+            if (!visited[key]) {
+             count++;
+             dfsHelper(graph, visited, key);   
+            }
+        }
+
+        return count;
+    }
+
     void dfs(Map<Integer, ArrayList<Integer>> graph) {
         boolean[] visited = new boolean[graph.size()];
         System.out.println("::: DFS ::::");
@@ -74,7 +88,7 @@ class Graph {
     }
 
     void dfsHelper(Map<Integer, ArrayList<Integer>> graph, boolean visited[], int node) {
-        System.out.println(node);
+        // System.out.println(node);
         visited[node] = true;
 
         for (int neighbour : graph.get(node)) {

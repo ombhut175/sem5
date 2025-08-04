@@ -11,8 +11,13 @@ public class Extra {
         Solution s1 = new Solution();
         // String s = "Hello world fvsagfffff asdfasdfDEWEEEEVCCCCCC";
         // System.out.println(s1.problem1(s));
-        int[] arr = {2,2,2,2,2};
-        System.out.println(s1.findKDistantIndices(arr, 2, 2));
+        // int[] arr = {2,2,2,2,2};
+        // System.out.println(s1.findKDistantIndices(arr, 2, 2));
+
+
+        char[][] chairs = {{'*','.','*'},{'.','*','.'},{'.','.','*'},{'.','.','*'}};
+
+
     }
 
 }
@@ -106,7 +111,29 @@ class Solution {
     }
 
     public int subtractToPositive(int a, int b) {
+
         return Math.abs(a - b);
     }
 
+    public int giveStudentArrangedCount(char[][] chairs){}
+
+    private boolean isValidSeat(int row,int col,char[][] chairs , boolean[][] isSeated){
+        boolean ans = false;
+        int columnLength = chairs[0].length;
+        int rowLength = chairs.length;
+
+        if (col-1 < 0 || chairs[row][col-1] == '.') {
+            ans = true;
+        }
+
+        if (col+1 >= columnLength || chairs[row][col+1] == '.') {
+            ans = true;
+        }
+
+        if (row + 1 >= rowLength || chairs[row+1][col] == '.') {
+            ans = true;    
+        }
+
+        
+    }
 }
